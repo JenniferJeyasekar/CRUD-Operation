@@ -8,6 +8,7 @@ class App extends Component {
   render() {
     return (
       //Create the routing to different CRUD operations
+      //Routing
       <Router>
         <div className='App'>
           <Route path='/' exact render={() => {
