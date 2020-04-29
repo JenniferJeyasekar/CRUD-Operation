@@ -4,8 +4,6 @@ import { AvForm, AvField, AvRadioGroup, AvRadio } from 'availity-reactstrap-vali
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
 import randomstring from "randomstring";
-
-
 class Create extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +16,6 @@ class Create extends React.Component {
       gender: ''
     }
   }
-
   //Handles the input changes
   handleFnameChange = (event) => {
     this.setState({
@@ -44,6 +41,10 @@ class Create extends React.Component {
     this.setState({
       gender: event.target.value
     })
+  }
+  refreshPage() {
+    console.log("Clicked");
+    window.location.reload();
   }
   //Loads the data into database
   handleSubmit = event => {
@@ -75,13 +76,13 @@ class Create extends React.Component {
   }
   render() {
     return (
-      <Container>
-        <Container fluid="xl">
+      <Container className="bg-info">
+        <Container>
           <AvForm onSubmit={this.handleSubmit.bind(this)} >
             <Row><Col><h1>Employee Management</h1></Col></Row>
             <Row><Col><h6>Open Book Assignment submitted by Jennifer</h6></Col></Row>
             <Row xs="4">
-              <Col md={1}><NavLink to='/'><Button size="md" md="3">Create</Button></NavLink></Col>
+              <Col md={1}><Button size="md" md="3" className="btn btn-light" onClick={this.refreshPage}>Create</Button></Col>
               <Col md={1}><NavLink to='/Read'><Button size="md" md="2">Read</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Update'><Button size="md" md="2">Update</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Delete'><Button size="md" md="2">Delete</Button></NavLink></Col>
@@ -124,7 +125,7 @@ class Create extends React.Component {
           </AvForm>
           {this.state.data && <div>
             <h2>Status</h2>
-              Data added successfully: <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+            {JSON.stringify(this.state.data, null, 2)}
           </div>}
         </Container>
       </Container>

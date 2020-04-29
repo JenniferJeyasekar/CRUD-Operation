@@ -66,6 +66,9 @@ class Update extends React.Component {
       }
     }).then(res => {
       const data = res.data;
+      this.setState({
+        data
+      });
       console.log(data);
     });
   }
@@ -118,9 +121,14 @@ class Update extends React.Component {
 
     }
   }
+  refreshPage() {
+    console.log("Clicked");
+    window.location.reload();
+  }
+
   render() {
     return (
-      <Container fluid='xl'>
+      <Container className="bg-info">
         <Container>
           <AvForm onSubmit={this.handleUpdate.bind(this)} >
             <Row><Col><h1>Employee Management</h1></Col></Row>
@@ -128,7 +136,7 @@ class Update extends React.Component {
             <Row xs="4">
               <Col md={1}><NavLink to='/'><Button size="md" md="3">Create</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Read'><Button size="md" md="2">Read</Button></NavLink></Col>
-              <Col md={1}><NavLink to='/Update'><Button size="md" md="2">Update</Button></NavLink></Col>
+              <Col md={1}><Button size="md" md="2" className="btn btn-light" onClick={this.refreshPage}>Update</Button></Col>
               <Col md={1}><NavLink to='/Delete'><Button size="md" md="2">Delete</Button></NavLink></Col>
             </Row>
             <Row><Alert color="Warning">{this.state.error}</Alert></Row>
@@ -139,7 +147,7 @@ class Update extends React.Component {
                 pattern: { value: '^[0-9]+$', errorMessage: 'Invalid name. Please enter only letters.' }
               }} /></Col>
               <Col>
-                <Button size="sm" className="Read-button" type='submit' onClick={this.handleRead.bind(this)}>Read</Button>
+                <Button size="sm" className="Update-button" type='submit' onClick={this.handleRead.bind(this)}>Read</Button>
               </Col>
             </Row>
             <Row xs="2">
@@ -178,7 +186,7 @@ class Update extends React.Component {
           </AvForm>
           {this.state.data && <div>
             <h2>Status</h2>
-              Data updated successfully: <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+            <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
           </div>}
         </Container>
       </Container>

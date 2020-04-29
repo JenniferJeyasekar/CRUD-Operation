@@ -67,8 +67,8 @@ class Read extends React.Component {
             email: data.Item.Email,
             dob: data.Item.DOB,
             gender: data.Item.Gender
-          })
-        })
+          });
+        });
     }
     catch (err) {
       let error = '';
@@ -92,21 +92,26 @@ class Read extends React.Component {
 
     }
   }
+  refreshPage() {
+    console.log("Clicked");
+    window.location.reload();
+  }
+
   render() {
 
     return (
-      <Container fluid='xl'>
+      <Container className="bg-info">
         <Container>
           <AvForm onSubmit={this.handleSubmit.bind(this)} >
             <Row><Col><h1>Employee Management</h1></Col></Row>
             <Row><Col><h6>Open Book Assignment submitted by Jennifer</h6></Col></Row>
             <Row xs="4">
               <Col md={1}><NavLink to='/'><Button size="md" md="3">Create</Button></NavLink></Col>
-              <Col md={1}><NavLink to='/Read'><Button size="md" md="2">Read</Button></NavLink></Col>
+              <Col md={1}><Button size="md" md="2" className="btn btn-light" onClick={this.refreshPage}>Read</Button></Col>
               <Col md={1}><NavLink to='/Update'><Button size="md" md="2">Update</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Delete'><Button size="md" md="2">Delete</Button></NavLink></Col>
             </Row>
-            <Row><Alert color="light">{this.state.error}</Alert></Row>
+            <Row><Alert color="Warning">{this.state.error}</Alert></Row>
             <h5>Read Existing Employee</h5>
             <Row xs="2">
               <Col sm={5}><AvField name="id" label="Employee Id:" type="text" placeholder="Enter employee id" value={this.state.id} onChange={this.handleIdChange.bind(this)} validate={{

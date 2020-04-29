@@ -10,7 +10,7 @@ class App extends Component {
       //Create the routing to different CRUD operations
       //Routing
       <Router>
-        <div className='App'>
+        <div class="position-relative">
           <Route path='/' exact render={() => {
             return (<Create />)
           }} />

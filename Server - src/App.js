@@ -95,7 +95,7 @@ app.post('/create', cors(), function (req, res, next) {
                 console.log("Error", JSON.stringify(err, null, 2));
             } else {
                 console.log("Sending the loaded data");
-                res.send(data);
+                res.send("Data added successfully!!")
                 console.log("Data Added", JSON.stringify(data, null, 2));
             }
         }
@@ -108,7 +108,7 @@ app.post('/create', cors(), function (req, res, next) {
 //Updates an item in the table
 app.put('/employee', function (req, res) {
     console.log("Update Data");
-    res.send('Got a PUT request at /user');
+    //res.send('Got a PUT request at /user');
 
     const id = parseInt(req.query.id);
     console.log(id);
@@ -141,7 +141,7 @@ app.put('/employee', function (req, res) {
         if (err) {
             console.log("Error", JSON.stringify(err, null, 2));
         } else {
-            //res.send(data);
+            res.send("Data updated successfully!!");
             console.log("Data updated", JSON.stringify(data, null, 2));
         }
     });
@@ -164,7 +164,7 @@ app.delete('/employee', function (req, res, next) {
         if (err) {
             console.log("Error", err);
         } else {
-            res.send("Data Deleted");
+            res.send("Data deleted successfully!!");
             console.log("Data Deleted", data);
         }
     });

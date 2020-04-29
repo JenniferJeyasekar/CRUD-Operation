@@ -1,6 +1,5 @@
-// Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
-// Set the region 
+// Set the region
 AWS.config.update({ region: 'ap-south-1', endpoint: 'http://localhost:8000' });
 // Create the DynamoDB service object
 var ddb = new AWS.DynamoDB();
@@ -36,7 +35,3 @@ ddb.createTable(params, function (err, data) {
         console.log("Table Created", JSON.stringify(data, null, 2));
     }
 });
-
-
-
-

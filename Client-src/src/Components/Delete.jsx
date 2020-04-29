@@ -61,7 +61,12 @@ class Delete extends React.Component {
       }
     }).then(res => {
       console.log("Data Deleted");
-    });
+      const data = res.data;
+      this.setState({
+        data
+      });
+      console.log(data);
+    })
   }
   //Retrives the data from the data
   handleSubmit = async (event) => {
@@ -96,7 +101,6 @@ class Delete extends React.Component {
       if (err) {
         formIsValid = false;
         error = "Cannot Read. Employee Id doesnot exist";
-
       }
       this.setState({
         error: error,
@@ -109,23 +113,26 @@ class Delete extends React.Component {
       });
       console.log("Error", err)
       return formIsValid;
-
     }
+  }
+  refreshPage() {
+    console.log("Clicked");
+    window.location.reload();
   }
   render() {
     return (
-      <Container fluid='xl'>
+      <Container className="bg-info">
         <Container>
           <AvForm onSubmit={this.handleDelete.bind(this)} >
             <Row><Col><h1>Employee Management</h1></Col></Row>
             <Row><Col><h6>Open Book Assignment submitted by Jennifer</h6></Col></Row>
             <Row xs="4">
-              <Col md={1}><NavLink to='/'><Button size="md" md="3">Create</Button></NavLink></Col>
+              <Col md={1}><NavLink to='/'><Button size="md" md="3" >Create</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Read'><Button size="md" md="2">Read</Button></NavLink></Col>
               <Col md={1}><NavLink to='/Update'><Button size="md" md="2">Update</Button></NavLink></Col>
-              <Col md={1}><NavLink to='/Delete'><Button size="md" md="2">Delete</Button></NavLink></Col>
+              <Col md={1}><Button size="md" md="2" className="btn btn-light" onClick={this.refreshPage}>Delete</Button></Col>
             </Row>
-            <Row><Alert color="light">{this.state.error}</Alert></Row>
+            <Row><Alert color="Warning">{this.state.error}</Alert></Row>
             <h5>Delete Existing Employee</h5>
             <Row xs="2">
               <Col sm={5}><AvField name="id" label="Employee Id:" type="text" placeholder="Enter employee id" value={this.state.id} onChange={this.handleIdChange.bind(this)} validate={{
@@ -162,7 +169,7 @@ class Delete extends React.Component {
           </AvForm>
           {this.state.data && <div>
             <h2>Status</h2>
-              Data deleted successfully: <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+            <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
           </div>}
         </Container>
       </Container>
