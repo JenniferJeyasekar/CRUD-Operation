@@ -51,6 +51,7 @@ app.get('/employee', cors(), function (req, res, next) {
         console.log("In get function");
         try {
             if (err) {
+                res.send(err);
                 console.log("Error", JSON.stringify(err, null, 2));
             } else {
                 res.send(data);

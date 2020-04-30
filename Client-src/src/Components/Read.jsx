@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Container, Row, Col, Button, Label, Input, Alert } from "reactstrap";
+import { Container, Row, Col, Button, Input, Alert } from "reactstrap";
+import { BsEnvelopeFill, BsPersonFill, BsFillTrashFill } from "react-icons/bs";
+import { MdDateRange, MdCreateNewFolder } from "react-icons/md";
+import { FaVenusMars, FaBookReader, FaUserEdit } from "react-icons/fa";
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import Axios from "axios";
 
@@ -75,7 +78,7 @@ class Read extends React.Component {
       let formIsValid = true;
       if (err) {
         formIsValid = false;
-        error = "Cannot Read. Employee Id doesnot exist";
+        error = "Cannot read!!! Please enter a valid employee id";
 
       }
       this.setState({
@@ -100,43 +103,48 @@ class Read extends React.Component {
   render() {
 
     return (
-      <Container className="bg-info">
+      <Container className="bg-info text-white">
         <Container>
           <AvForm onSubmit={this.handleSubmit.bind(this)} >
             <Row><Col><h1>Employee Management</h1></Col></Row>
             <Row><Col><h6>Open Book Assignment submitted by Jennifer</h6></Col></Row>
             <Row xs="4">
-              <Col md={1}><NavLink to='/'><Button size="md" md="3">Create</Button></NavLink></Col>
-              <Col md={1}><Button size="md" md="2" className="btn btn-light" onClick={this.refreshPage}>Read</Button></Col>
-              <Col md={1}><NavLink to='/Update'><Button size="md" md="2">Update</Button></NavLink></Col>
-              <Col md={1}><NavLink to='/Delete'><Button size="md" md="2">Delete</Button></NavLink></Col>
+              <Col md={1}><NavLink to='/'><Button size="md" md="3"><MdCreateNewFolder size='2rem' /></Button></NavLink></Col>
+              <Col md={1}><Button size="md" md="2" className="btn btn-light" onClick={this.refreshPage}><FaBookReader size='2rem' /></Button></Col>
+              <Col md={1}><NavLink to='/Update'><Button size="md" md="2"><FaUserEdit size='2rem' /></Button></NavLink></Col>
+              <Col md={1}><NavLink to='/Delete'><Button size="md" md="2"><BsFillTrashFill size='2rem' /></Button></NavLink></Col>
             </Row>
             <Row><Alert color="Warning">{this.state.error}</Alert></Row>
             <h5>Read Existing Employee</h5>
             <Row xs="2">
-              <Col sm={5}><AvField name="id" label="Employee Id:" type="text" placeholder="Enter employee id" value={this.state.id} onChange={this.handleIdChange.bind(this)} validate={{
-                required: { value: true, errorMessage: 'Please enter employee id!' },
-                pattern: { value: '^[0-9]+$', errorMessage: 'Invalid name. Please enter only letters.' }
-              }} /></Col>
+              <Col sm={5}>
+                <BsPersonFill size='3rem' />
+                <AvField name="id" type="text" placeholder="Enter employee id" value={this.state.id} onChange={this.handleIdChange.bind(this)} validate={{
+                  required: { value: true, errorMessage: 'Please enter employee id!' },
+                  pattern: { value: '^[0-9]+$', errorMessage: 'Invalid name. Please enter only letters.' }
+                }} /></Col>
               <Col>
-                <Button size="sm" className="Read-button" type='submit'>Read</Button>
+                <Button size="sm" className="Read-button" type='submit'><FaBookReader size='4rem' /></Button>
               </Col>
             </Row>
             <Row xs="2">
-              <Col sm={5}><AvField name="fname" label="First Name:" type="text" placeholder="Enter First Name" value={this.state.fname} onChange={this.handleFnameChange.bind(this)} /></Col>
-              <Col sm={5}><AvField name="sname" label="Surname:" type="text" placeholder="Enter Surname" value={this.state.sname} onChange={this.handleSnameChange.bind(this)} /></Col>
+              <Col sm={5}><BsPersonFill size='3rem' /><AvField name="fname" type="text" placeholder="Enter First Name" value={this.state.fname} onChange={this.handleFnameChange.bind(this)} /></Col>
+              <Col sm={5}><BsPersonFill size='3rem' /><AvField name="sname" type="text" placeholder="Enter Surname" value={this.state.sname} onChange={this.handleSnameChange.bind(this)} /></Col>
             </Row>
             <Row xs="2">
               <Col sm={5}>
-                <AvField name="emailProp" label="Email" type="text" placeholder="abc@xyz.com" value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
+                <BsEnvelopeFill size='3rem' />
+                <AvField name="emailProp" type="text" placeholder="abc@xyz.com" value={this.state.email} onChange={this.handleEmailChange.bind(this)} />
               </Col>
               <Col sm={5}>
-                <AvField name="dateProp" label="Date of Birth" type="text" placeholder="MM/DD/YYYY" value={this.state.dob} onChange={this.handleDobChange.bind(this)} />
+                <MdDateRange size='3rem' />
+                <AvField name="dateProp" type="text" placeholder="Date of Birth [MM/DD/YYYY]" value={this.state.dob} onChange={this.handleDobChange.bind(this)} />
               </Col>
             </Row>
             <Row>
-              <Label sm="2">Gender:</Label>
-              <Col sm={3}>
+
+              <Col sm={5}>
+                <FaVenusMars size='3rem' /><br />
                 <Input type="radio" value="Male" checked={this.state.gender === 'Male'} onChange={this.handleGenderChange.bind(this)} /> Male
               <br />
                 <Input type="radio" value="Female" checked={this.state.gender === 'Female'} onChange={this.handleGenderChange.bind(this)} /> Female
