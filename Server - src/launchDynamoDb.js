@@ -3,6 +3,6 @@ localDynamo.launch({
     port: 8000,
     cors: '*',
     sharedDb: true,
-    dir: 'C:\\Temp\\Github\\CRUD-Operation\\Server - src',
+    dir: process.cwd(),
     heap: '512m'
 });
