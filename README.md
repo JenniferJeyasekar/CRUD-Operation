@@ -1,4 +1,15 @@
 # CRUD-Operation
+
+Prerequisite:
+
+Download AWS CLI version 2 and install it. 
+
+Open cmd prompt and navigate to the folder where AWS is installed.
+
+Type the command "aws configure" and configure AWS credentials. 
+
+Steps to run:
+
 Create a folder in local machine to save the project from git.
 
 Copy the link from github repository "JenniferJeyasekar/CRUD-Operation". Select clone.
