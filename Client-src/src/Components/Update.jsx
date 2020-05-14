@@ -172,7 +172,10 @@ class Update extends React.Component {
             <Row xs="2">
               <Col sm={5}>
                 <BsEnvelopeFill size='3rem' />
-                <AvField name="emailProp" type="text" placeholder="abc@xyz.com" value={this.state.email} onChange={this.handleEmailChange.bind(this)} validate={{ required: { value: true, errorMessage: 'Please enter Email' }, email: true }} />
+                <AvField name="emailProp" type="text" placeholder="abc@xyz.com" value={this.state.email} onChange={this.handleEmailChange.bind(this)} validate={{
+                  required: { value: true, errorMessage: 'Please enter surname' },
+                  pattern: { value: '^[A-Za-z]+@zyllu.com$', errorMessage: 'Invalid email' }
+                }} />
               </Col>
               <Col sm={5}>
                 <MdDateRange size='3rem' />
